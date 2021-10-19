@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>HTTP的概念、原理、⼯作机制、数据格式和REST</title>
+    <url>/posts/ecd9395/</url>
+    <content><![CDATA[<h2 id="HTTP的定义"><a href="#HTTP的定义" class="headerlink" title="HTTP的定义"></a>HTTP的定义</h2><table><tr><td bgcolor="#FFFFFF">Hypertext Transfer Protocol，超⽂本传输协议，和 HTML (Hypertext MarkupLanguage 超⽂本标记语⾔) ⼀起诞⽣，⽤于在⽹络上请求和传输 HTML 内容。超⽂本，即「扩展型⽂本」，指的是 HTML 中可以有链向别的⽂本的链接（hyperlink）。</td></tr></table>
+
+<span id="more"></span>
+
+<p>HTTP的⼯作⽅式</p>
+<p><strong>浏览器：</strong></p>
+<p>⽤户输⼊地址后回⻋或点击链接 -&gt; 浏览器拼装 HTTP 报⽂并发送请求给服务器 -&gt; 服务器处理请求后发送响应报⽂给浏览器 -&gt; 浏览器解析响应报⽂并使⽤渲染引擎显示到界⾯</p>
+<h3 id="⼿机-App"><a href="#⼿机-App" class="headerlink" title="⼿机 App"></a>⼿机 App</h3><p>⽤户点击或界⾯⾃动触发联⽹需求 -&gt; Android 代码调⽤拼装 HTTP 报⽂并发送请求到服务器 -&gt; 服务器处理请求后发送响应报⽂给⼿机 -&gt; Android 代码处理响应报⽂并作出相应处理（如储存数据、加⼯数据、显示数据到界⾯）</p>
+<h2 id="URL-和-HTTP-报文"><a href="#URL-和-HTTP-报文" class="headerlink" title="URL 和 HTTP 报文"></a>URL 和 HTTP 报文</h2><h4 id="URL格式"><a href="#URL格式" class="headerlink" title="URL格式"></a>URL格式</h4><p>三部分：协议类型、服务器地址(和端⼝号)、路径(Path)</p>
+<p>协议类型://服务器地址[:端⼝号]路径</p>
+<h3 id="报⽂格式"><a href="#报⽂格式" class="headerlink" title="报⽂格式"></a><strong>报⽂格式</strong></h3><p><strong>请求报⽂</strong></p>
+<p><img src="/posts/ecd9395/image-20211016180658687.png"></p>
+<p><strong>响应报⽂</strong></p>
+<p><img src="/posts/ecd9395/image-20211016184024911.png"></p>
+<p><strong>Request Method</strong> <strong>请求⽅法</strong></p>
+<p><strong>GET</strong></p>
+<ul>
+<li><p>⽤于获取资源</p>
+</li>
+<li><p>对服务器数据不进⾏修改</p>
+</li>
+<li><p>不发送 Body</p>
+</li>
+</ul>
+<table><tr><td bgcolor="#000000"><font color="white">GET /users/1 HTTP/1.1 <br>
+    Host: api.github.com</font></td></tr></table>
+
+<p>对应 Retrofifit 的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GET(&quot;/users/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="meta">@Path(&quot;id&quot;)</span> String id,</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="meta">@Query(&quot;gender&quot;)</span> String gender)</span></span>;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>http</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
+</search>

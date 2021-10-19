@@ -21,28 +21,36 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ben&#39;s blog">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="HTTP的定义Hypertext Transfer Protocol，超⽂本传输协议，和 HTML (Hypertext MarkupLanguage 超⽂本标记语⾔) ⼀起诞⽣，⽤于在⽹络上请求和传输 HTML 内容。超⽂本，即「扩展型⽂本」，指的是 HTML 中可以有链向别的⽂本的链接（hyperlink）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP的概念、原理、⼯作机制、数据格式和REST">
+<meta property="og:url" content="http://example.com/posts/ecd9395/index.html">
 <meta property="og:site_name" content="Ben&#39;s blog">
+<meta property="og:description" content="HTTP的定义Hypertext Transfer Protocol，超⽂本传输协议，和 HTML (Hypertext MarkupLanguage 超⽂本标记语⾔) ⼀起诞⽣，⽤于在⽹络上请求和传输 HTML 内容。超⽂本，即「扩展型⽂本」，指的是 HTML 中可以有链向别的⽂本的链接（hyperlink）。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/posts/ecd9395/image-20211016180658687.png">
+<meta property="og:image" content="http://example.com/posts/ecd9395/image-20211016184024911.png">
+<meta property="article:published_time" content="2021-10-16T08:49:11.213Z">
+<meta property="article:modified_time" content="2021-10-19T02:21:34.924Z">
 <meta property="article:author" content="Ben">
+<meta property="article:tag" content="http">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/posts/ecd9395/image-20211016180658687.png">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/posts/ecd9395/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Ben's blog</title>
+  <title>HTTP的概念、原理、⼯作机制、数据格式和REST | Ben's blog</title>
   
 
 
@@ -184,9 +192,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -202,10 +211,9 @@
       <meta itemprop="name" content="Ben's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/ecd9395/" class="post-title-link" itemprop="url">HTTP的概念、原理、⼯作机制、数据格式和REST</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          HTTP的概念、原理、⼯作机制、数据格式和REST
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -244,30 +252,76 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="HTTP的定义"><a href="#HTTP的定义" class="headerlink" title="HTTP的定义"></a>HTTP的定义</h2><table><tr><td bgcolor="#FFFFFF">Hypertext Transfer Protocol，超⽂本传输协议，和 HTML (Hypertext MarkupLanguage 超⽂本标记语⾔) ⼀起诞⽣，⽤于在⽹络上请求和传输 HTML 内容。超⽂本，即「扩展型⽂本」，指的是 HTML 中可以有链向别的⽂本的链接（hyperlink）。</td></tr></table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/ecd9395/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <h2 id="HTTP的定义"><a href="#HTTP的定义" class="headerlink" title="HTTP的定义"></a>HTTP的定义</h2><table><tr><td bgcolor="#FFFFFF">Hypertext Transfer Protocol，超⽂本传输协议，和 HTML (Hypertext MarkupLanguage 超⽂本标记语⾔) ⼀起诞⽣，⽤于在⽹络上请求和传输 HTML 内容。超⽂本，即「扩展型⽂本」，指的是 HTML 中可以有链向别的⽂本的链接（hyperlink）。</td></tr></table>
+
+<span id="more"></span>
+
+<p>HTTP的⼯作⽅式</p>
+<p><strong>浏览器：</strong></p>
+<p>⽤户输⼊地址后回⻋或点击链接 -&gt; 浏览器拼装 HTTP 报⽂并发送请求给服务器 -&gt; 服务器处理请求后发送响应报⽂给浏览器 -&gt; 浏览器解析响应报⽂并使⽤渲染引擎显示到界⾯</p>
+<h3 id="⼿机-App"><a href="#⼿机-App" class="headerlink" title="⼿机 App"></a>⼿机 App</h3><p>⽤户点击或界⾯⾃动触发联⽹需求 -&gt; Android 代码调⽤拼装 HTTP 报⽂并发送请求到服务器 -&gt; 服务器处理请求后发送响应报⽂给⼿机 -&gt; Android 代码处理响应报⽂并作出相应处理（如储存数据、加⼯数据、显示数据到界⾯）</p>
+<h2 id="URL-和-HTTP-报文"><a href="#URL-和-HTTP-报文" class="headerlink" title="URL 和 HTTP 报文"></a>URL 和 HTTP 报文</h2><h4 id="URL格式"><a href="#URL格式" class="headerlink" title="URL格式"></a>URL格式</h4><p>三部分：协议类型、服务器地址(和端⼝号)、路径(Path)</p>
+<p>协议类型://服务器地址[:端⼝号]路径</p>
+<h3 id="报⽂格式"><a href="#报⽂格式" class="headerlink" title="报⽂格式"></a><strong>报⽂格式</strong></h3><p><strong>请求报⽂</strong></p>
+<p><img src="/posts/ecd9395/image-20211016180658687.png"></p>
+<p><strong>响应报⽂</strong></p>
+<p><img src="/posts/ecd9395/image-20211016184024911.png"></p>
+<p><strong>Request Method</strong> <strong>请求⽅法</strong></p>
+<p><strong>GET</strong></p>
+<ul>
+<li><p>⽤于获取资源</p>
+</li>
+<li><p>对服务器数据不进⾏修改</p>
+</li>
+<li><p>不发送 Body</p>
+</li>
+</ul>
+<table><tr><td bgcolor="#000000"><font color="white">GET /users/1 HTTP/1.1 <br>
+    Host: api.github.com</font></td></tr></table>
+
+<p>对应 Retrofifit 的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GET(&quot;/users/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="meta">@Path(&quot;id&quot;)</span> String id,</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="meta">@Query(&quot;gender&quot;)</span> String gender)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
     </div>
 
     
     
     
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/http/" <i class="fa fa-tag"></i>># http</a>
+          </div>
+
+        
+
+
+        
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -320,6 +374,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">HTTP的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%BC%BF%E6%9C%BA-App"><span class="nav-number">1.1.</span> <span class="nav-text">⼿机 App</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL-%E5%92%8C-HTTP-%E6%8A%A5%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">URL 和 HTTP 报文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#URL%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.0.1.</span> <span class="nav-text">URL格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E2%BD%82%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">报⽂格式</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
