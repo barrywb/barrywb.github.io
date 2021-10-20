@@ -33,6 +33,139 @@
 <p>对应 Retrofifit 的代码：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GET(&quot;/users/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="meta">@Path(&quot;id&quot;)</span> String id,</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="meta">@Query(&quot;gender&quot;)</span> String gender)</span></span>;</span><br></pre></td></tr></table></figure>
 
+<p><strong>POST</strong></p>
+<ul>
+<li>⽤于增加或修改资源</li>
+<li>发送给服务器的内容写在 Body ⾥⾯</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/users</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>api.github.com</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>13</span><br><span class="line">name=rengwuxian&amp;gender=male</span><br></pre></td></tr></table></figure>
+
+<p>对应 Retrofifit 的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FormUrlEncoded</span></span><br><span class="line"><span class="meta">@POST(&quot;/users&quot;)</span></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">addUser</span><span class="params">(<span class="meta">@Field(&quot;name&quot;)</span> String name,</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="meta">@Field(&quot;gender&quot;)</span> String gender)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>PUT</strong></p>
+<ul>
+<li>⽤于修改资源</li>
+<li>发送给服务器的内容写在 Body ⾥⾯</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">PUT</span> <span class="string">/users/1</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"></span><br><span class="line"><span class="makefile"><span class="section">Host: api.github.com</span></span></span><br><span class="line"><span class="makefile"></span></span><br><span class="line"><span class="makefile"><span class="section">Content-Type: application/x-www-form-urlencoded</span></span></span><br><span class="line"><span class="makefile"></span></span><br><span class="line"><span class="makefile"><span class="section">Content-Length: 13</span></span></span><br><span class="line"><span class="makefile"></span></span><br><span class="line"><span class="makefile">gender=female</span></span><br></pre></td></tr></table></figure>
+
+<p>对应 Retrofifit 的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FormUrlEncoded</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@PUT(&quot;/users/&#123;id&#125;&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">updateGender</span><span class="params">(<span class="meta">@Path(&quot;id&quot;)</span> String id,</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function"><span class="meta">@Field(&quot;gender&quot;)</span> String gender)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>DELETE</strong></p>
+<ul>
+<li>⽤于删除资源</li>
+<li>不发送 Body</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="string">/users/1</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"></span><br><span class="line"><span class="vim">Hos<span class="variable">t:</span> api.github.<span class="keyword">com</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@DELETE(&quot;/users/&#123;id&#125;&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="meta">@Path(&quot;id&quot;)</span> String id,</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function"><span class="meta">@Query(&quot;gender&quot;)</span> String gender)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>HEAD</strong></p>
+<ul>
+<li>和 GET 使⽤⽅法完全相同</li>
+<li>和 GET 唯⼀区别在于，返回的响应中没有 Body</li>
+</ul>
+<p><strong>Status Code</strong> <strong>状态码</strong></p>
+<p>三位数字，⽤于对响应结果做出类型化描述（如「获取成功」「内容未找到」）。</p>
+<ul>
+<li>1xx：临时性消息。如：100 （继续发送）、101（正在切换协议）</li>
+<li>2xx：成功。最典型的是 200（OK）、201（创建成功）。</li>
+<li>3xx：重定向。如 301（永久移动）、302（暂时移动）、304（内容未改变）。</li>
+<li>4xx：客户端错误。如 400（客户端请求错误）、401（认证失败）、403（被禁</li>
+<li>⽌）、404（找不到内容）。</li>
+<li>5xx：服务器错误。如 500（服务器内部错误）。</li>
+</ul>
+<p><strong>Header</strong> <strong>⾸部</strong></p>
+<p>作⽤：HTTP 消息的 metadata</p>
+<p><strong>Host</strong></p>
+<p>⽬标主机。注意：不是在⽹络上⽤于寻址的，⽽是在⽬标服务器上⽤于定位⼦服务</p>
+<p>器的</p>
+<p><strong>Content-Type</strong></p>
+<p>指定 Body 的类型。主要有四类：</p>
+<p><strong>1. text/html</strong></p>
+<p>请求 Web ⻚⾯是返回响应的类型，Body 中返回 html ⽂本。格式如下：</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"></span><br><span class="line"><span class="xml">Content-Type: text/html; charset=utf-8</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">Content-Length: 853</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">......</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. x-www-form-urlencoded</strong></p>
+<p>Web ⻚⾯纯⽂本表单的提交⽅式。</p>
+<p><img src="http%E5%8E%9F%E7%90%86.assets/image-20211021000923107.png" alt="image-20211021000923107"></p>
+<p><img src="http%E5%8E%9F%E7%90%86.assets/image-20211021000936525.png" alt="image-20211021000936525"></p>
+<p>格式如下：</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/users</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"></span><br><span class="line"><span class="makefile"><span class="section">Host: api.github.com</span></span></span><br><span class="line"><span class="makefile"></span></span><br><span class="line"><span class="makefile"><span class="section">Content-Type: application/x-www-form-urlencoded</span></span></span><br><span class="line"><span class="makefile"></span></span><br><span class="line"><span class="makefile"><span class="section">Content-Length: 27</span></span></span><br><span class="line"><span class="makefile"></span></span><br><span class="line"><span class="makefile">name=rengwuxian&amp;gender=male</span></span><br></pre></td></tr></table></figure>
+
+<p>对应 Retrofifit 的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FormUrlEncoded</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@POST(&quot;/users&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">addUser</span><span class="params">(<span class="meta">@Field(&quot;name&quot;)</span> String name,</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function"><span class="meta">@Field(&quot;gender&quot;)</span> String gender)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. multipart/form-data</strong></p>
+<p>Web ⻚⾯含有⼆进制⽂件时的提交⽅式。</p>
+<p><img src="http%E5%8E%9F%E7%90%86.assets/image-20211021001112676.png" alt="image-20211021001112676"></p>
+<p>格式如下：</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/users</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"></span><br><span class="line"><span class="haskell"><span class="type">Host</span>: hencoder.com</span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="type">Content</span>-<span class="type">Type</span>: multipart/form-<span class="class"><span class="keyword">data</span>; boundary=<span class="comment">----</span></span></span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="type">WebKitFormBoundary7MA4YWxkTrZu0gW</span></span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="type">Content</span>-<span class="type">Length</span>: <span class="number">2382</span></span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="comment">------WebKitFormBoundary7MA4YWxkTrZu0gW</span></span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="type">Content</span>-<span class="type">Disposition</span>: form-<span class="class"><span class="keyword">data</span>; name=&quot;name&quot;</span></span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="title">rengwuxian</span></span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="comment">------WebKitFormBoundary7MA4YWxkTrZu0gW</span></span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="type">Content</span>-<span class="type">Disposition</span>: form-<span class="class"><span class="keyword">data</span>; name=&quot;avatar&quot;;</span></span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="title">filename</span>=<span class="string">&quot;avatar.jpg&quot;</span></span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="type">Content</span>-<span class="type">Type</span>: image/jpeg</span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="type">JFIFHHvOwX9jximQrWa</span>......</span></span><br><span class="line"><span class="haskell"></span></span><br><span class="line"><span class="haskell"><span class="comment">------WebKitFormBoundary7MA4YWxkTrZu0gW--</span></span></span><br></pre></td></tr></table></figure>
+
+<p>对应 Retrofifit 的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Multipart</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@POST(&quot;/users&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">addUser</span><span class="params">(<span class="meta">@Part(&quot;name&quot;)</span> RequestBody name,</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function"><span class="meta">@Part(&quot;avatar&quot;)</span> RequestBody avatar)</span></span>;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">RequestBody namePart =</span><br><span class="line"></span><br><span class="line">RequestBody.create(MediaType.parse(<span class="string">&quot;text/plain&quot;</span>),</span><br><span class="line"></span><br><span class="line">nameStr);</span><br><span class="line"></span><br><span class="line">RequestBody avatarPart =</span><br><span class="line"></span><br><span class="line">RequestBody.create(MediaType.parse(<span class="string">&quot;image/jpeg&quot;</span>),</span><br><span class="line"></span><br><span class="line">avatarFile);</span><br><span class="line"></span><br><span class="line">api.addUser(namePart, avatarPart);</span><br></pre></td></tr></table></figure>
+
+<p><strong>4. application/json , image/jpeg , application/zip …</strong></p>
+<p>单项内容（⽂本或⾮⽂本都可以），⽤于 Web Api 的响应或者 POST / PUT 的请求</p>
+<p>请求中提交 JSON</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/users</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"></span><br><span class="line"><span class="pgsql">Host: hencoder.com</span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql">Content-<span class="keyword">Type</span>: application/<span class="type">json</span>; charset=utf<span class="number">-8</span></span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql">Content-Length: <span class="number">38</span></span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql">&#123;&quot;name&quot;:&quot;rengwuxian&quot;,&quot;gender&quot;:&quot;male&quot;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>对应 Retrofifit 的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@POST(&quot;/users&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">addUser</span><span class="params">(<span class="meta">@Body(&quot;user&quot;)</span> User user)</span></span>;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要使⽤ JSON 相关的 Converter</span></span><br><span class="line"></span><br><span class="line">api.addUser(user);</span><br></pre></td></tr></table></figure>
+
+<p>响应中返回 JSON</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"></span><br><span class="line"><span class="1c">content-type: application/json; charset=utf-<span class="number">8</span></span></span><br><span class="line"><span class="1c"></span></span><br><span class="line"><span class="1c">content-length: <span class="number">234</span></span></span><br><span class="line"><span class="1c"></span></span><br><span class="line"><span class="1c">[&#123;<span class="string">&quot;login&quot;</span>:<span class="string">&quot;mojombo&quot;</span>,<span class="string">&quot;id&quot;</span>:<span class="number">1</span>,<span class="string">&quot;node_id&quot;</span>:<span class="string">&quot;MDQ6VXNl</span></span></span><br><span class="line"><span class="1c"></span></span><br><span class="line"><span class="1c">cjE=<span class="string">&quot;,&quot;</span>avatar_url<span class="string">&quot;:&quot;</span>https:<span class="comment">//avatars0.githubuse</span></span></span><br><span class="line"><span class="1c"></span></span><br><span class="line"><span class="1c">rcontent.com/u/<span class="number">1</span>?v=<span class="number">4</span><span class="string">&quot;,&quot;</span>gravat......</span></span><br></pre></td></tr></table></figure>
+
+<p>请求中提交⼆进制内容</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/user/1/avatar</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"></span><br><span class="line"><span class="yaml"><span class="attr">Host:</span> <span class="string">hencoder.com</span></span></span><br><span class="line"><span class="yaml"></span></span><br><span class="line"><span class="yaml"><span class="attr">Content-Type:</span> <span class="string">image/jpeg</span></span></span><br><span class="line"><span class="yaml"></span></span><br><span class="line"><span class="yaml"><span class="attr">Content-Length:</span> <span class="number">1575</span></span></span><br><span class="line"><span class="yaml"></span></span><br><span class="line"><span class="yaml"><span class="string">JFIFHH9......</span></span></span><br></pre></td></tr></table></figure>
+
+<p>对应 Retrofifit 的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@POST(&quot;users/&#123;id&#125;/avatar&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">updateAvatar</span><span class="params">(<span class="meta">@Path(&quot;id&quot;)</span> String id, <span class="meta">@Body</span></span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">RequestBody avatar)</span></span>;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">RequestBody avatarBody =</span><br><span class="line"></span><br><span class="line">RequestBody.create(MediaType.parse(<span class="string">&quot;image/jpeg&quot;</span>),</span><br><span class="line"></span><br><span class="line">avatarFile);</span><br><span class="line"></span><br><span class="line">api.updateAvatar(id, avatarBody)</span><br></pre></td></tr></table></figure>
+
+<p>相应中返回⼆进制内容</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"></span><br><span class="line"><span class="maxima"><span class="built_in">content</span>-type: <span class="built_in">image</span>/jpeg</span></span><br><span class="line"><span class="maxima"></span></span><br><span class="line"><span class="maxima"><span class="built_in">content</span>-<span class="built_in">length</span>: <span class="number">1575</span></span></span><br><span class="line"><span class="maxima"></span></span><br><span class="line"><span class="maxima">JFIFHH9......</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Content-Length</strong></p>
+<p>指定 Body 的⻓度（字节）。</p>
+<h2 id="Transfer-chunked-分块传输编码Chunked"><a href="#Transfer-chunked-分块传输编码Chunked" class="headerlink" title="Transfer: chunked (分块传输编码Chunked"></a>Transfer: chunked (分块传输编码Chunked</h2><h2 id="Transfer-Encoding"><a href="#Transfer-Encoding" class="headerlink" title="Transfer Encoding)"></a>Transfer Encoding)</h2><p>⽤于当响应发起时，内容⻓度还没能确定的情况下。和 Content-Length 不同时使</p>
+<p>⽤。⽤途是尽早给出响应，减少⽤户等待。</p>
+<p>格式：</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"></span><br><span class="line"><span class="pgsql">Content-<span class="keyword">Type</span>: <span class="type">text</span>/html</span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql">Transfer-<span class="keyword">Encoding</span>: chunked</span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql"><span class="number">4</span></span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql">Chun</span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql"><span class="number">9</span></span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql">ked Trans</span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql"><span class="number">12</span></span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql">fer <span class="keyword">Encoding</span></span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql"><span class="number">0</span></span></span><br><span class="line"><span class="pgsql"></span></span><br><span class="line"><span class="pgsql"></span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Location</strong></p>
+<p>指定重定向的⽬标 URL</p>
+<p><strong>User-Agent</strong></p>
+<p>⽤户代理，即是谁实际发送请求、接受响应的，例如⼿机浏览器、某款⼿机 App。</p>
+<p><strong>Range / Accept-Range</strong></p>
+<p>按范围取数据</p>
+<p>Accept-Range: bytes 响应报⽂中出现，表示服务器⽀持按字节来取范围数据</p>
+<p>Range: bytes=<start>-<end> 请求报⽂中出现，表示要取哪段数据</end></start></p>
+<p>Content-Range:<start>-<end>/total 响应报⽂中出现，表示发送的是哪段数据</end></start></p>
+<p>作⽤：断点续传、多线程下载。</p>
+<p><strong>其他</strong> <strong>Headers</strong></p>
+<ul>
+<li>Accept: 客户端能接受的数据类型。如 text/html</li>
+<li>Accept-Charset: 客户端接受的字符集。如 utf-8</li>
+<li>Accept-Encoding: 客户端接受的压缩编码类型。如 gzip</li>
+<li>Content-Encoding：压缩类型。如 gzip</li>
+</ul>
+<p><strong>Cache</strong></p>
+<p>作⽤：在客户端或中间⽹络节点缓存数据，降低从服务器取数据的频率，以提⾼⽹</p>
+<p>络性能。</p>
+<p><strong>REST</strong></p>
+<p>REST 的定义众说纷纭，没有统⼀答案。</p>
+<p>扔物线的观点：REST HTTP 即正确使⽤ HTTP。包括：</p>
+<ul>
+<li>使⽤资源的格式来定义 URL</li>
+<li>规范地使⽤ method 来定义⽹络请求操作</li>
+<li>规范地使⽤ status code 来表示响应状态</li>
+<li>其他符合 HTTP 规范的设计准则</li>
+</ul>
+<p>摘自——扔物线课程</p>
 ]]></content>
       <categories>
         <category>http</category>

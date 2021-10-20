@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-10-19T03:13:02.274Z</updated>
+  <updated>2021-10-20T16:20:19.227Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/posts/ecd9395/"/>
     <id>http://example.com/posts/ecd9395/</id>
     <published>2021-10-16T08:49:11.213Z</published>
-    <updated>2021-10-19T03:13:02.274Z</updated>
+    <updated>2021-10-20T16:20:19.227Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;HTTP的定义&quot;&gt;&lt;a href=&quot;#HTTP的定义&quot; class=&quot;headerlink&quot; title=&quot;HTTP的定义&quot;&gt;&lt;/a&gt;HTTP的定义&lt;/h2&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#FFFFFF&quot;&gt;Hypertext Transfer Protocol，超⽂本传输协议，和 HTML (Hypertext MarkupLanguage 超⽂本标记语⾔) ⼀起诞⽣，⽤于在⽹络上请求和传输 HTML 内容。超⽂本，即「扩展型⽂本」，指的是 HTML 中可以有链向别的⽂本的链接（hyperlink）。&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary>
