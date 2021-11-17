@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-11-14T16:03:43.512Z</updated>
+  <updated>2021-11-17T15:22:06.702Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>TCP/IP 和 HTTPS</title>
+    <link href="http://example.com/posts/58e77ae9/"/>
+    <id>http://example.com/posts/58e77ae9/</id>
+    <published>2021-11-17T15:15:35.000Z</published>
+    <updated>2021-11-17T15:22:06.702Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;TCP / IP&lt;/strong&gt; &lt;strong&gt;协议族&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;概念&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;⼀系列协议所组成的⼀个⽹络分层模型&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为什么要分层？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;因为⽹络的不稳定性&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;具体分层：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/posts/58e77ae9/image-20211117231636346.png&quot; alt=&quot;image-20211117231636346&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="TCP/IP" scheme="http://example.com/tags/TCP-IP/"/>
+    
+    <category term="Https" scheme="http://example.com/tags/Https/"/>
+    
+  </entry>
+  
+  <entry>
     <title>登录和第三方授权</title>
     <link href="http://example.com/posts/3b60524c/"/>
     <id>http://example.com/posts/3b60524c/</id>
     <published>2021-11-14T15:07:50.000Z</published>
-    <updated>2021-11-14T16:03:43.512Z</updated>
+    <updated>2021-11-14T16:17:20.049Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;登录和授权的区别&lt;/strong&gt;&lt;/p&gt;
@@ -29,15 +54,16 @@
 &lt;li&gt;登录：身份认证，即确认「你是你」的过程。&lt;/li&gt;
 &lt;li&gt;授权：由身份或持有的令牌确认享有某些权限（例如获取⽤户信息）。⽽登录过程实质上的⽬的也是为了确认权限。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;因此，在实际的应⽤中，多数场景下的「登录」和「授权」界限是模糊的。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;HTTP&lt;/strong&gt; &lt;strong&gt;中确认授权（或登录）的两种⽅式&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;通过 Cookie&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;通过 Authorization Header&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</summary>
+&lt;p&gt;因此，在实际的应⽤中，多数场景下的「登录」和「授权」界限是模糊的。&lt;/p&gt;</summary>
     
     
     
+    
+    <category term="授权" scheme="http://example.com/tags/%E6%8E%88%E6%9D%83/"/>
+    
+    <category term="登录" scheme="http://example.com/tags/%E7%99%BB%E5%BD%95/"/>
+    
+    <category term="token" scheme="http://example.com/tags/token/"/>
     
   </entry>
   
