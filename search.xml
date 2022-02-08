@@ -174,17 +174,52 @@
       </tags>
   </entry>
   <entry>
+    <title>View绘制流程</title>
+    <url>/posts/5001dce4/</url>
+    <content><![CDATA[<h1 id="View-绘制流程"><a href="#View-绘制流程" class="headerlink" title="View 绘制流程"></a>View 绘制流程</h1><span id="more"></span>
+
+<h2 id="View-绘制流程主要对象图示"><a href="#View-绘制流程主要对象图示" class="headerlink" title="View 绘制流程主要对象图示"></a>View 绘制流程主要对象图示</h2><p><img src="/posts/5001dce4/image-20220209000231781.png" alt="image-20220209000231781"></p>
+<h2 id="View-绘制流程函数调用"><a href="#View-绘制流程函数调用" class="headerlink" title="View 绘制流程函数调用"></a>View 绘制流程函数调用</h2><p><img src="/posts/5001dce4/image-20220209000329378.png" alt="image-20220209000329378"></p>
+<h2 id="在子线程中更新-UI-不报错的几种方式"><a href="#在子线程中更新-UI-不报错的几种方式" class="headerlink" title="在子线程中更新 UI 不报错的几种方式"></a>在子线程中更新 UI 不报错的几种方式</h2><ol>
+<li>主线程申请成功后⼦线程申请</li>
+</ol>
+<p><img src="/posts/5001dce4/image-20220209000428268.png" alt="image-20220209000428268"></p>
+<ol start="2">
+<li>在⼦线程中创建 ViewRootImpl</li>
+</ol>
+<p><img src="/posts/5001dce4/image-20220209000449755.png" alt="image-20220209000449755"></p>
+<ol start="3">
+<li><p>利⽤硬件加速机制绕开 requestLayout()</p>
+<p>在硬件加速的⽀持下，如果控件只是经常了 invalidate() ，⽽没有触发requestLayout() 是不会 触发 ViewRootImpl#checkThread() 的。</p>
+</li>
+<li><p>SurfaceView</p>
+</li>
+</ol>
+<p>Android 中有⼀个控件 SurfaceView ，它可以通过 holder 获得 Canvas 对象，可以直接在⼦线程中更新 UI。</p>
+<p><end>摘自——扔物线课程</end></p>
+]]></content>
+      <tags>
+        <tag>源码</tag>
+        <tag>绘制</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Kotlin 进阶</title>
+    <url>/posts/4fa27f9d/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>TCP/IP 和 HTTPS</title>
     <url>/posts/58e77ae9/</url>
     <content><![CDATA[<p><strong>TCP / IP</strong> <strong>协议族</strong></p>
 <p><strong>概念</strong></p>
 <p>⼀系列协议所组成的⼀个⽹络分层模型</p>
+<span id="more"></span>
+
 <p><strong>为什么要分层？</strong></p>
 <p>因为⽹络的不稳定性</p>
 <p><strong>具体分层：</strong></p>
 <p><img src="/posts/58e77ae9/image-20211117231636346.png" alt="image-20211117231636346"></p>
-<span id="more"></span>
-
 <ul>
 <li>Application Layer 应⽤层：HTTP、FTP、DNS</li>
 <li>Transport Layer 传输层：TCP、UDP</li>
@@ -199,6 +234,7 @@
 <h4 id="⻓连接"><a href="#⻓连接" class="headerlink" title="⻓连接"></a>⻓连接</h4><h4 id="为什么要⻓连接？"><a href="#为什么要⻓连接？" class="headerlink" title="为什么要⻓连接？"></a>为什么要⻓连接？</h4><p>因为移动⽹络并不在 Internet 中，⽽是在运营商的内⽹，并不具有真正的公⽹ IP，因此当某个 TCP 连接在⼀段时间不通信之后，⽹关会出于⽹络性能考虑⽽关闭这条TCP 连接和公⽹的连接通道，导致这个 TCP 端⼝不再能收到外部通信消息，即 TCP连接被动关闭。</p>
 <p><strong>⻓连接的实现⽅式</strong></p>
 <p>⼼跳。即在⼀定间隔时间内，使⽤ TCP 连接发送超短⽆意义消息来让⽹关不能将⾃⼰定义为「空闲连接」，从⽽防⽌⽹关将⾃⼰的连接关闭。</p>
+<p><end>摘自——扔物线课程</end></p>
 ]]></content>
       <tags>
         <tag>TCP/IP</tag>
