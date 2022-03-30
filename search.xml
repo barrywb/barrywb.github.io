@@ -174,6 +174,55 @@
       </tags>
   </entry>
   <entry>
+    <title>Java 多线程和线程同步</title>
+    <url>/posts/16d1401c/</url>
+    <content><![CDATA[<h4 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h4><ul>
+<li><p>进程和线程</p>
+<ul>
+<li><p>操作系统中运⾏多个软件</p>
+</li>
+<li><p>⼀个运⾏中的软件可能包含多个进程</p>
+</li>
+<li><p>⼀个运⾏中的进程可能包含多个线程</p>
+<span id="more"></span></li>
+</ul>
+</li>
+<li><p>CPU 线程和操作系统线程</p>
+<ul>
+<li>CPU 线程<ul>
+<li>多核 CPU 的每个核各⾃独⽴运⾏，因此每个核⼀个线程</li>
+<li>「四核⼋线程」：CPU 硬件⽅在硬件级别对 CPU 进⾏了⼀核多线程的⽀持（本质上依然是每个核⼀个线程）</li>
+</ul>
+</li>
+<li>操作系统线程：操作系统利⽤时间分⽚的⽅式，把 CPU 的运⾏拆分给多条运⾏逻辑，即为操作系统的线程</li>
+<li>单核 CPU 也可以运⾏多线程操作系统</li>
+</ul>
+</li>
+<li><p>线程是什么：按代码顺序执⾏下来，执⾏完毕就结束的⼀条线</p>
+<ul>
+<li>UI 线程为什么不会结束？因为它在初始化完毕后会执⾏死循环，循环的内容是刷新界⾯</li>
+</ul>
+</li>
+</ul>
+<h4 id="多线程的使用"><a href="#多线程的使用" class="headerlink" title="多线程的使用"></a>多线程的使用</h4><ul>
+<li><p>Thread 和 Runnable</p>
+<ul>
+<li>Thread</li>
+</ul>
+<p><img src="/posts/16d1401c/image-20220330230146993.png" alt="image-20220330230146993"></p>
+<ul>
+<li>Runnable</li>
+</ul>
+</li>
+</ul>
+<p><img src="/posts/16d1401c/image-20220330230332248.png" alt="image-20220330230332248"></p>
+<p>未完</p>
+]]></content>
+      <tags>
+        <tag>线程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>View绘制流程</title>
     <url>/posts/5001dce4/</url>
     <content><![CDATA[<h1 id="View-绘制流程"><a href="#View-绘制流程" class="headerlink" title="View 绘制流程"></a>View 绘制流程</h1><span id="more"></span>
