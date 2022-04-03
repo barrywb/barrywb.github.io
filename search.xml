@@ -207,16 +207,117 @@
 <h4 id="多线程的使用"><a href="#多线程的使用" class="headerlink" title="多线程的使用"></a>多线程的使用</h4><ul>
 <li><p>Thread 和 Runnable</p>
 <ul>
-<li>Thread</li>
+<li><p>Thread</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Thread thread = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> System.out.println(<span class="string">&quot;Thread started!&quot;</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br><span class="line">thread.start();</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><img src="/posts/16d1401c/image-20220330230146993.png" alt="image-20220330230146993"></p>
 <ul>
 <li>Runnable</li>
 </ul>
 </li>
 </ul>
-<p><img src="/posts/16d1401c/image-20220330230332248.png" alt="image-20220330230332248"></p>
-<p>未完</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Runnable runnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> System.out.println(<span class="string">&quot;Thread with Runnable</span></span><br><span class="line"><span class="string">started!&quot;</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Thread thread = <span class="keyword">new</span> Thread(runnable);</span><br><span class="line">thread.start();</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>ThreadFactory</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ThreadFactory factory = <span class="keyword">new</span> ThreadFactory() &#123;</span><br><span class="line"> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> Thread <span class="title">newThread</span><span class="params">(Runnable r)</span> </span>&#123;</span><br><span class="line"> count ++;</span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">new</span> Thread(r, <span class="string">&quot;Thread-&quot;</span> + count);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Runnable runnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">System.out.println(Thread.currentThread().getName()</span><br><span class="line">+ <span class="string">&quot; started!&quot;</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Thread thread = factory.newThread(runnable);</span><br><span class="line">thread.start();</span><br><span class="line">Thread thread1 = factory.newThread(runnable);</span><br><span class="line">thread1.start();</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>Executor 和线程池</p>
+<ul>
+<li>常⽤： newCachedThreadPool()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Runnable runnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> System.out.println(<span class="string">&quot;Thread with Runnable</span></span><br><span class="line"><span class="string">started!&quot;</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Executor executor =</span><br><span class="line">Executors.newCachedThreadPool();</span><br><span class="line">executor.execute(runnable);</span><br><span class="line">executor.execute(runnable);</span><br><span class="line">executor.execute(runnable);</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>短时批量处理： newFixedThreadPool()</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ExecutorService executor =</span><br><span class="line">Executors.newFixedThreadPool(20);</span><br><span class="line">for (Bitmap bitmap : bitmaps) &#123;</span><br><span class="line"> executor.execute(bitmapProcessor(bitmap));</span><br><span class="line">&#125;</span><br><span class="line">executor.shutdown();</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>Callable 和 Future</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Callable&lt;String&gt; callable = <span class="keyword">new</span> Callable&lt;String&gt;() &#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line"> Thread.sleep(<span class="number">1500</span>);</span><br><span class="line"> &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line"> e.printStackTrace();</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="string">&quot;Done!&quot;</span>;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br><span class="line">ExecutorService executor =</span><br><span class="line">Executors.newCachedThreadPool();</span><br><span class="line">Future&lt;String&gt; future = executor.submit(callable);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"> String result = future.get();</span><br><span class="line"> System.out.println(<span class="string">&quot;result: &quot;</span> + result);</span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException | ExecutionException e) &#123;</span><br><span class="line"> e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="线程同步与线程安全"><a href="#线程同步与线程安全" class="headerlink" title="线程同步与线程安全"></a>线程同步与线程安全</h4><ul>
+<li><p>synchronized</p>
+<ul>
+<li><p>synchronized ⽅法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> newValue)</span> </span>&#123;</span><br><span class="line"> x = newValue;</span><br><span class="line"> y = newValue;</span><br><span class="line"> <span class="keyword">if</span> (x != y) &#123;</span><br><span class="line"> System.out.println(<span class="string">&quot;x: &quot;</span> + x + <span class="string">&quot;, y:&quot;</span> + y);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>synchronized 代码块</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> newValue)</span> </span>&#123;</span><br><span class="line"> <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line"> x = newValue;</span><br><span class="line"> y = newValue;</span><br><span class="line"> <span class="keyword">if</span> (x != y) &#123;</span><br><span class="line"> System.out.println(<span class="string">&quot;x: &quot;</span> + x + <span class="string">&quot;, y:&quot;</span></span><br><span class="line">+ y);</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">synchronized</span> (monitor1) &#123;</span><br><span class="line"> <span class="keyword">synchronized</span> (monitor2) &#123;</span><br><span class="line"> name = x + <span class="string">&quot;-&quot;</span> + y;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>synchronized 的本质</p>
+<ul>
+<li>保证⽅法内部或代码块内部资源（数据）的<strong>互斥访问</strong>。即同⼀时间、由同⼀个 Monitor 监视的代码，最多只能有⼀个线程在访问</li>
+</ul>
+<p><img src="/posts/16d1401c/image-20220403010029587.png" alt="image-20220403010029587"></p>
+<ul>
+<li>保证线程之间对监视资源的<strong>数据同步</strong>。即，任何线程在获取到 Monitor后的第⼀时间，会先将共享内存中的数据复制到⾃⼰的缓存中；任何线程在释放 Monitor 的第⼀时间，会先将缓存中的数据复制到共享内存中。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/posts/16d1401c/image-20220403094718582.png" alt="image-20220403094718582"></p>
+<ul>
+<li><p>volatile</p>
+<ul>
+<li>保证加了 volatile 关键字的字段的操作具有<strong>同步性</strong>，以及对 long 和double 的操作的原⼦性（long double 原⼦性这个简单说⼀下就⾏）。因此 volatile可以看做是简化版的 synchronized。</li>
+<li>volatile 只对基本类型 (byte、char、short、int、long、flfloat、double、boolean) 的赋值操作和对象的引⽤赋值操作有效，你要修改 User.name 是不能保证同步的。</li>
+<li>volatile 依然解决不了 ++ 的原⼦性问题。</li>
+</ul>
+</li>
+<li><p>java.util.concurrent.atomic 包：</p>
+<ul>
+<li>下⾯有 AtomicInteger AtomicBoolean 等类，作⽤和 volatile 基本⼀致，可以看做是通⽤版的 volatile。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">AtomicInteger atomicInteger = <span class="keyword">new</span></span><br><span class="line">AtomicInteger(<span class="number">0</span>);</span><br><span class="line">...</span><br><span class="line"> </span><br><span class="line">atomicInteger.getAndIncrement();</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>Lock / ReentrantReadWriteLock</p>
+<ul>
+<li>同样是「加锁」机制。但使⽤⽅式更灵活，同时也更麻烦⼀些。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">...</span><br><span class="line"> </span><br><span class="line">lock.lock();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"> x++;</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"> lock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>finally 的作⽤：保证在⽅法提前结束或出现 Exception 的时候，依然能正常释放锁。</p>
+<ul>
+<li>⼀般并不会只是使⽤ Lock ，⽽是会使⽤更复杂的锁，例如ReadWriteLock ：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ReentrantReadWriteLock lock = <span class="keyword">new</span></span><br><span class="line">ReentrantReadWriteLock();</span><br><span class="line">Lock readLock = lock.readLock();</span><br><span class="line">Lock writeLock = lock.writeLock();</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">count</span><span class="params">()</span> </span>&#123;</span><br><span class="line">writeLock.lock();</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line"> x++;</span><br><span class="line"> &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"> writeLock.unlock();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> time)</span> </span>&#123;</span><br><span class="line"> readLock.lock();</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; time; i++) &#123;</span><br><span class="line"> System.out.print(x + <span class="string">&quot; &quot;</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> System.out.println();</span><br><span class="line"> &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"> readLock.unlock();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>线程安全问题的本质:</li>
+</ul>
+<p>在多个线程访问共同的资源时，在某<strong>⼀个线程</strong>对资源进⾏<strong>写操作的中途</strong>（写⼊已经开始，但还没结束），<strong>其他线程</strong>对这个<strong>写了⼀半的资源</strong>进⾏了<strong>读操作</strong>，或者基于这个<strong>写了⼀半的资源</strong>进⾏了<strong>写操作</strong>，导致出现<strong>数据错误</strong>。</p>
+<ul>
+<li>锁机制的本质：</li>
+</ul>
+<p>通过对共享资源进⾏访问限制，让同⼀时间只有⼀个线程可以访问资源，保证了数据的准确性。</p>
+<ul>
+<li>不论是线程安全问题，还是针对线程安全问题所衍⽣出的锁机制，它们的核⼼都在于共享的<strong>资源</strong>，⽽不是某个⽅法或者某⼏⾏代码。</li>
+</ul>
+<p><end>摘自——扔物线课程</end></p>
 ]]></content>
       <tags>
         <tag>线程</tag>
